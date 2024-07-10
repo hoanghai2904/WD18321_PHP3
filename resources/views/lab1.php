@@ -20,6 +20,7 @@
             <?php foreach ($students as $key):?> 
              <tr>
                 <td><?= $key['id'] ?></td>
+           
                 <td><?= $key['name'] ?></td>
                 <td><?= $key['masv'] ?></td>
                 <td><?= $key['diachi'] ?></td>

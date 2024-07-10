@@ -10,7 +10,7 @@ class Lab2Controller extends Controller
 {
     public function listProduct(){
         $products = DB::table('product')->orderBy('view','desc')->get();
-        return view('listproduct', ['products' => $products]);
+        return view('product.listproduct', ['products' => $products]);
     }
 
     public function searchProduct(Request $request)
@@ -24,13 +24,13 @@ class Lab2Controller extends Controller
                         ->orderBy('view', 'desc') // Sắp xếp theo view giảm dần
                         ->get();
 
-        return view('listproduct', ['products' => $products]);
+        return view('product.listproduct', ['products' => $products]);
         // Thay 'listproduct' bằng tên view thực tế mà bạn muốn hiển thị kết quả tìm kiếm.
     }
 
     public function addProduct(){
         $category = DB::table('category')->select('id')->get();
-        return view('addproduct')->with(['category'=>$category]);
+        return view('product.addproduct')->with(['category'=>$category]);
     }
 
     public function addPostProduct(Request $request){
@@ -55,7 +55,7 @@ class Lab2Controller extends Controller
     {
         $product = DB::table('product')->where('id', $idProduct)->first();
         $categories = DB::table('category')->select('id')->get();
-        return view('editproduct')-> with(['product' => $product, 'categories' => $categories]);
+        return view('product.editproduct')-> with(['product' => $product, 'categories' => $categories]);
     }
 
     // Phương thức để xử lý yêu cầu POST cập nhật sản phẩm

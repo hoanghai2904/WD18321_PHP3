@@ -130,11 +130,12 @@ class UserController extends Controller
         ->join('phongban','phongban.id', '=' ,'users.phongban_id')
         ->select('users.id','users.name','users.tuoi','users.phongban_id','users.email','phongban.ten_donvi')
         ->get();
-        return view('listuser')->with(['listUsers' => $listUsers]);
+        return view('users.listuser')->with(['listUsers' => $listUsers]);
+        //return ra file view users chỏ đến list
     }
     public function addUsers(){
         $phongban = DB::table('phongban')->select('id','ten_donvi')->get();
-        return view('adduser')->with(['phongban'=>$phongban]);
+        return view('users.adduser')->with(['phongban'=>$phongban]);
     }
 
     public function addPostUsers(Request $request){
@@ -158,7 +159,7 @@ class UserController extends Controller
     public function editUser($idUser){
         $user = DB::table('users')->where('id', $idUser)->first();
         $phongban = DB::table('phongban')->select('id', 'ten_donvi')->get();
-        return view('edituser')->with(['user' => $user, 'phongban' => $phongban]);
+        return view('users.edituser')->with(['user' => $user, 'phongban' => $phongban]);
     }
     
     public function updateUsers(Request $request, $idUser){

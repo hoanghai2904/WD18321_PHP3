@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 <body>
-  <h1>theem</h1>
+  <h1>Thêm</h1>
     <div class="container">
         <form action="{{route('product.addPostProduct')}}" method="POST">
             @csrf
@@ -30,6 +30,14 @@
               <label for="" class="form-label">categoy_id</label>
               <input type="" class="form-control" name="nameCategory_id">
             </div>
+            {{-- <div class="mb-3">
+              <label for="" class="form-label">categoy_id</label>
+             <select name="nameCategory_id" id="">
+                  @foreach ($category as $item)
+                      <option value="{{$item->id}}">{{$item->name}}</option>
+                  @endforeach
+             </select>
+            </div> --}}
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
     </div>

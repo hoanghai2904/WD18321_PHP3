@@ -29,7 +29,7 @@ class Lab2Controller extends Controller
     }
 
     public function addProduct(){
-        $category = DB::table('category')->select('id')->get();
+        $category = DB::table('category')->select('id','name')->get();
         return view('product.addproduct')->with(['category'=>$category]);
     }
 
@@ -71,6 +71,10 @@ class Lab2Controller extends Controller
         ];
         DB::table('product')->where('id', $idProduct)->update($data);
         return redirect()->route('product.listProduct');
+    }
+
+    public function test(){
+        return view('admin/product/list');
     }
 
 }

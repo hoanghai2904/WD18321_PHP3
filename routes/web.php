@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\AuthennicationController;
 use App\Http\Controllers\Lab2Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -54,16 +56,38 @@ Route::get('/thong-tin', [thongtinController::class,'thongTin']);
 //     Route::put('update-user/{idUser}', [UserController::class, 'updateUsers'])->name('updateUsers');
 // });    
 
-Route::group(['prefix' => 'product', 'as' => 'product.'], function(){
-    Route::get('list-product',[Lab2Controller::class, 'listProduct'])->name('listProduct');
+// Route::group(['prefix' => 'product', 'as' => 'product.'], function(){
+//     Route::get('list-product',[Lab2Controller::class, 'listProduct'])->name('listProduct');
 
-    Route::get('add-product',[Lab2Controller::class, 'addProduct'])->name('addProduct');
-    Route::post('add-product',[Lab2Controller::class,'addPostProduct'])->name('addPostProduct');
+//     Route::get('add-product',[Lab2Controller::class, 'addProduct'])->name('addProduct');
+//     Route::post('add-product',[Lab2Controller::class,'addPostProduct'])->name('addPostProduct');
 
-    Route::get('delete-product/{idProduct}', [Lab2Controller::class,'deleteProduct'])->name('deleteProduct');
+//     Route::get('delete-product/{idProduct}', [Lab2Controller::class,'deleteProduct'])->name('deleteProduct');
 
-    Route::get('edit-product/{idProduct}', [Lab2Controller::class, 'editProduct'])->name('editProduct');
-    Route::put('update-product/{idProduct}', [Lab2Controller::class, 'updateProducts'])->name('updateProducts');
+//     Route::get('edit-product/{idProduct}', [Lab2Controller::class, 'editProduct'])->name('editProduct');
+//     Route::put('update-product/{idProduct}', [Lab2Controller::class, 'updateProducts'])->name('updateProducts');
 
-    Route::get('search-product', [Lab2Controller::class, 'searchProduct'])->name('searchProduct');
+//     Route::get('search-product', [Lab2Controller::class, 'searchProduct'])->name('searchProduct');
+// });
+
+// Route::get('test', [Lab2Controller::class, 'test'])->name('test');
+
+Route::get('login',[AuthennicationController::class,'login'])->name('login');
+Route::post('login',[AuthennicationController::class,'postLogin'])->name('postLogin');
+Route::get('logout',[AuthennicationController::class,'logout'])->name('logout');
+Route::get('register',[AuthennicationController::class,'register'])->name('register');
+Route::post('post-register',[AuthennicationController::class,'postRegister'])->name('postRegister');
+
+
+
+Route::group(['prefix' => 'admin' , 'as' => 'admin.' ],function(){
+    Route::group(['prefix' => 'product' , 'as' => 'product.'],function(){
+        Route::get('/',[ProductController::class, 'listProducts'])->name('listProducts');
+        Route::get('add-product',[ProductController::class, 'addProducts'])->name('addProducts');
+        Route::post('add-product',[ProductController::class, 'addPostProducts'])->name('addPostProducts');
+        Route::delete('delete-product',[ProductController::class, 'deleteProducts'])->name('deleteProducts');
+        Route::get('detail-product/{idProduct}', [ProductController::class, 'detailProducts'])->name('detailProducts');
+        Route::get('update-product/{idProduct}', [ProductController::class, 'updateProducts'])->name('updateProducts');
+        Route::patch('update-product/{idProduct}', [ProductController::class, 'updatePatchProducts'])->name('updatePatchProducts');
+    });
 });

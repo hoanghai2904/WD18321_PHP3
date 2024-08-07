@@ -56,6 +56,7 @@
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Search products..." name="query">
                 <button class="btn btn-outline-secondary" type="submit">Search</button>
+                {{-- <a href="{{ route('product.listProduct') }}" class="btn btn-warning">Reset</a> --}}
             </div>
         </form>
 
@@ -69,6 +70,7 @@
                     <th>name</th>
                     <th>price</th>
                     <th>view</th>
+                    <th>Category_id</th>
                     <th>create_at</th>
                     <th>update_at</th>
                     <th>Thao tac</th>
@@ -81,6 +83,7 @@
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->price }}</td>
                         <td>{{ $product->view }}</td>
+                        <td>{{ $product->category_id }}</td>
                         <td>{{ $product->create_at }}</td>
                         <td>{{ $product->update_at }}</td>
                         <td>
